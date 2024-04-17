@@ -14,6 +14,12 @@ import androidx.fragment.app.DialogFragment;
 
 public class MyDialogFragment extends DialogFragment {
 
+    private LayoutInflater inflater;
+    @Nullable
+    private ViewGroup container;
+    @Nullable
+    private Bundle savedInstanceState;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class MyDialogFragment extends DialogFragment {
         // Устанавливаем текст сообщения
         messageTextView.setText("Статистика за выбранный период");
 
+
         return view;
     }
+
 }

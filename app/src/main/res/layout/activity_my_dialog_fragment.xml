@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="410dp"
+    android:layout_height="410dp"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -12,5 +12,34 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:text=""/>
+
+    <TextView
+        android:id="@+id/padding"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text=""/>
+    <TextView
+        android:id="@+id/messagTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="wt"/>
+    <TextView
+        android:id="@+id/messeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="gg"/>
+    <TextView
+        android:id="@+id/messeTe6xtView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="gg"/>
 
 </LinearLayout>

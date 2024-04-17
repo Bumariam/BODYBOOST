@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.bodyboost.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,14 +34,44 @@ public class ProfileActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tv_email1);
         tvWaterAmount = findViewById(R.id.water_prof);
 
+        SharedData sharedData = SharedData.getInstance();
+
+        // Получаем значение totalCalories из разделяемого класса
+        int totalCaloriesValue = sharedData.getTotalCalories();
+
+        // Находим элемент food_prof и устанавливаем полученное значение
+        TextView foodProfTextView = findViewById(R.id.food_prof);
+        foodProfTextView.setText(totalCaloriesValue + " ");
+
+        // Получаем сохраненное значение consumedWater из SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int tvConsumedWater = preferences.getInt("water_amount", 0);
+        tvWaterAmount.setText(tvConsumedWater + " ml");
+
+        // Получаем сохраненное значение previousSleepDuration из SharedPreferences
+        String previousSleepDuration = preferences.getString("previousSleepDuration", "");
+
+        // Если previousSleepDuration не установлено (т.е., равно ""), устанавливаем значение по умолчанию "0"
+        if (previousSleepDuration.equals("")) {
+            previousSleepDuration = "0";
+        }
+
+        // Находим элемент sleep_prof и устанавливаем полученное значение
+        TextView sleepProfTextView = findViewById(R.id.sleep_prof);
+        sleepProfTextView.setText(previousSleepDuration);
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if (currentUser == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
             finish();
             return;
         }
+
+        tvName = findViewById(R.id.tv_name);
+        tvEmail = findViewById(R.id.tv_email1);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("users").child(currentUser.getUid());
